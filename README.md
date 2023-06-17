@@ -1,3 +1,46 @@
+local CombatFramework = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework)
+local Camera = require(game.ReplicatedStorage.Util.CameraShaker)
+Camera:Stop()
+coroutine.wrap(function()
+    game:GetService("RunService").Stepped:Connect(function()
+        if getupvalues(CombatFramework)[2]['activeController'].timeToNextAttack then
+            getupvalues(CombatFramework)[2]['activeController'].timeToNextAttack = 10
+            getupvalues(CombatFramework)[2]['activeController'].hitboxMagnitude = 100
+            getupvalues(CombatFramework)[2]['activeController']:attack()
+        end
+    end)
+end)()
+    local ScreenGui = Instance.new("ScreenGui")
+    local Toggle = Instance.new("TextButton")
+    
+    ScreenGui.Name = "ScreenGui"
+    ScreenGui.Parent = game.CoreGui
+    
+    Toggle.Name = "Toggle"
+    Toggle.Parent = ScreenGui
+    Toggle.BackgroundColor3 = Color3.fromRGB(51, 255, 255)
+    Toggle.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
+    Toggle.Size = UDim2.new(0, 50, 0, 50)
+    Toggle.Font = Enum.Font.Code
+    Toggle.Text = "K$"
+    Toggle.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Toggle.TextScaled = true
+    Toggle.MouseButton1Down:connect(function()
+        game:GetService("VirtualInputManager"):SendKeyEvent(true,305,false,game)
+        game:GetService("VirtualInputManager"):SendKeyEvent(false,305,false,game)
+    end)
+local CombatFramework = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework)
+local Camera = require(game.ReplicatedStorage.Util.CameraShaker)
+Camera:Stop()
+coroutine.wrap(function()
+    game:GetService("RunService").Stepped:Connect(function()
+        if getupvalues(CombatFramework)[2]['activeController'].timeToNextAttack then
+            getupvalues(CombatFramework)[2]['activeController'].timeToNextAttack = 0
+            getupvalues(CombatFramework)[2]['activeController'].hitboxMagnitude = 100
+            getupvalues(CombatFramework)[2]['activeController']:attack()
+        end
+    end)
+end)()
 task.spawn(function()
     while wait() do
         for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"]:GetChildren()) do
@@ -16,22 +59,29 @@ end
 if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Respawn") then
     game:GetService("ReplicatedStorage").Effect.Container.Respawn:Destroy()
 end
-local CombatFramework = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework)
-local Camera = require(game.ReplicatedStorage.Util.CameraShaker)
-Camera:Stop()
-coroutine.wrap(function()
-    game:GetService("RunService").Stepped:Connect(function()
-        if getupvalues(CombatFramework)[2]['activeController'].timeToNextAttack then
-            getupvalues(CombatFramework)[2]['activeController'].timeToNextAttack = 4
-            getupvalues(CombatFramework)[2]['activeController'].hitboxMagnitude = 100
-            getupvalues(CombatFramework)[2]['activeController']:attack()
-        end
+local ScreenGui = Instance.new("ScreenGui")
+    local Toggle = Instance.new("TextButton")
+    
+    ScreenGui.Name = "ScreenGui"
+    ScreenGui.Parent = game.CoreGui
+    
+    Toggle.Name = "Toggle"
+    Toggle.Parent = ScreenGui
+    Toggle.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    Toggle.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
+    Toggle.Size = UDim2.new(0, 50, 0, 50)
+    Toggle.Font = Enum.Font.Code
+    Toggle.Text = "[[Version : Premium ]]"
+    Toggle.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Toggle.TextScaled = true
+    Toggle.MouseButton1Down:connect(function()
+        game:GetService("VirtualInputManager"):SendKeyEvent(true,305,false,game)
+        game:GetService("VirtualInputManager"):SendKeyEvent(false,305,false,game)
     end)
-end)()
 local DINOHUB = Instance.new("ScreenGui")
 local OPENCLOSE = Instance.new("TextButton")
 
-DINOHUB.Name = "KOBEN hub"
+DINOHUB.Name = "KOBEN HUB"
 DINOHUB.Parent = game.CoreGui
 DINOHUB.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
@@ -42,7 +92,7 @@ OPENCLOSE.BorderSizePixel = 0
 OPENCLOSE.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
 OPENCLOSE.Size = UDim2.new(0.0447916649, 0, 0.0845824406, 0)
 OPENCLOSE.Font = Enum.Font.DenkOne
-OPENCLOSE.Text = "UI"
+OPENCLOSE.Text = "K"
 OPENCLOSE.TextColor3 = Color3.fromRGB(96, 255, 16)
 OPENCLOSE.TextScaled = true
 OPENCLOSE.TextSize = 14.000
@@ -126,7 +176,7 @@ function Update:Window(text,logo,keybind)
 	local yoo = string.gsub(tostring(keybind),"Enum.KeyCode.","")
 	
 	local SOMEXHUB = Instance.new("ScreenGui")
-	SOMEXHUB.Name = "KOBEN hub"
+	SOMEXHUB.Name = "sazx hub"
 	SOMEXHUB.Parent = game.CoreGui
 	SOMEXHUB.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
@@ -177,7 +227,7 @@ function Update:Window(text,logo,keybind)
 	Name.TextSize = 17.000
 
 	local Hub = Instance.new("TextLabel")
-	Hub.Name = "Hub"
+	Hub.Name = "[[Hub]]"
 	Hub.Parent = Top
 	Hub.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	Hub.BackgroundTransparency = 1.000
@@ -1092,17 +1142,17 @@ elseif placeId == 7449423635 then
 	Three_World = true
 end
 
-local Library = Update:Window("KOBEN ","",Enum.KeyCode.RightControl);
-local AutoFarm = Library:Tab("ฟาร์ม")
+local Library = Update:Window("KOBEN",Enum.KeyCode.RightControl);
+local AutoFarm = Library:Tab("เมนู")
 local Auto = Library:Tab("ทำของ")
-local Stats = Library:Tab("สแตด")
-local tp = Library:Tab("บิน&วาป")
-local Dungeon = Library:Tab("ดัน + มอง")
+local Stats = Library:Tab("สแตส")
+local tp = Library:Tab("วาป")
+local Dungeon = Library:Tab("ดัน+มอง")
 local DevilFruit = Library:Tab("ผล")
 local Shop = Library:Tab("ร้านค้า")
 local Misc = Library:Tab("ร่วม")
 local Setting = Library:Tab("ตั้งค่า")
-local Cr = Library:Tab("ไม่ต้องรู้")
+local Cr = Library:Tab("")
 
 Wapon = {}
 for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do  
@@ -1116,12 +1166,12 @@ for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
     end
 end
 
-local SelectWeapon = AutoFarm:Dropdown("Select Weapon",Wapon,function(Value)
+local SelectWeapon = AutoFarm:Dropdown("เลือกอาวุธ",Wapon,function(Value)
     SelectToolWeapon = Value
     SelectToolWeaponOld = Value
 end)
 
-AutoFarm:Button("Refresh Weapon",function()
+AutoFarm:Button("รีอาวุธ",function()
 	SelectWeapon:Clear()
 	for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do  
 		if v:IsA("Tool") then
@@ -1137,7 +1187,7 @@ end)
 
 AutoFarm:Line()
 
-AutoFarm:Toggle("AutoFarm Level",false,function(vu)
+AutoFarm:Toggle("ฟาร์มเวล",false,function(vu)
     _G.AutoFarm = vu
 	if _G.AutoFarm and SelectToolWeapon == "" then
         ui:Notification("AutoFarm","SelectWeapon First ",2)
@@ -1151,7 +1201,7 @@ AutoFarm:Toggle("AutoFarm Level",false,function(vu)
 		end
 	end
 end)
-AutoFarm:Toggle("AutoFarm Bone",false,function(vu)
+AutoFarm:Toggle("ฟาร์มโบน",false,function(vu)
     if not Three_World and vu then
 
     else
@@ -1204,7 +1254,7 @@ spawn(function()
         end
     end
 end)
-AutoFarm:Toggle("AutoFarm Ectoplasm",false,function(A)
+AutoFarm:Toggle("ฟาร์มเงินเขียว",false,function(A)
     if New_World then
         _G.AutoFramEctoplasm = A
     else
@@ -1298,12 +1348,12 @@ for i, v in pairs(game.workspace.Enemies:GetChildren()) do
 end
 
 SelectBoss = ""
-local BossName = AutoFarm:Dropdown("Select Boss",Bosslist,function(Value)
+local BossName = AutoFarm:Dropdown("เลือกบอส",Bosslist,function(Value)
 	SelectBoss = Value
 	Don = false
 end)
 
-AutoFarm:Button("Refresh Boss",function()
+AutoFarm:Button("รีบอส",function()
      Boss = {}
      BossName:Clear()
 		for i, v in pairs(game.ReplicatedStorage:GetChildren()) do
@@ -1323,7 +1373,7 @@ AutoFarm:Button("Refresh Boss",function()
 			end
 		end
     end)
-AutoFarm:Toggle("AutoFarm Boss",false,function(Value)
+AutoFarm:Toggle("ฟาร์มบอส",false,function(Value)
 		local args = {
 			[1] = "AbandonQuest"
 		}
@@ -1337,7 +1387,7 @@ spawn(function()
 		end
 	end
 end)
-AutoFarm:Toggle("AutoFarm All Boss",false,function(Value)
+AutoFarm:Toggle("ฟาร์มบอสทั้งหมด",false,function(Value)
 		KillAllBoss = Value
 		MsBoss = ""
 		KillBossuseGet = false
@@ -1352,7 +1402,7 @@ end)
 
 -- Auto
 
-Auto:Toggle("Auto New World",false,function(value)
+Auto:Toggle("ไปโลก2",false,function(value)
     _G.AutoNew = value
 end)
 
@@ -1424,7 +1474,7 @@ spawn(function()
     end
 end)
 
-Auto:Toggle("Auto Third World",false,function(vu)
+Auto:Toggle("ไปโลก2",false,function(vu)
     _G.AutoThird = vu
 end)
 
@@ -1649,7 +1699,7 @@ end)
 
 Auto:Line()
 
-Auto:Toggle("Auto Superhuman",nil,function(vu)
+Auto:Toggle("ทำหมัดซุป",nil,function(vu)
 		Superhuman = vu
 		if vu then
 			local args = {
@@ -1658,7 +1708,7 @@ Auto:Toggle("Auto Superhuman",nil,function(vu)
 			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
 		end
 	end)
-Auto:Toggle("Auto Death Step",nil,function(vu)
+Auto:Toggle("ทำขาดำV2",nil,function(vu)
 		DeathStep = vu
 		if vu then
 			local args = {
@@ -1667,7 +1717,7 @@ Auto:Toggle("Auto Death Step",nil,function(vu)
 			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
 		end
 	end)
-Auto:Toggle("Auto Dragon Talon",nil,function(vu)
+Auto:Toggle("ทำหมัดมังกรV2",nil,function(vu)
 		DargonTalon = vu
 		if vu then
 			local args = {
@@ -1678,7 +1728,7 @@ Auto:Toggle("Auto Dragon Talon",nil,function(vu)
 			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
 		end
 	end)
-Auto:Toggle("Auto Electric Clow",nil,function(vu)
+Auto:Toggle("ทำหมัดสายฟ้าV2",nil,function(vu)
 		Electricclow = vu
 		if vu then
 			local args = {
@@ -1876,9 +1926,9 @@ Auto:Toggle("Auto Electric Clow",nil,function(vu)
 		end
 	end)
 
-Auto:Seperator("Sea 1")
+Auto:Seperator("โลก1")
 
-Auto:Toggle("Auto Open Saber Room",false,function(vu)
+Auto:Toggle("เปิดประตูแชงค์",false,function(vu)
     _G.AutoSaber = vu
 end)   
 spawn(function()
@@ -2089,7 +2139,7 @@ spawn(function()
         end
     end
 end)
-Auto:Toggle("Auto Pole V.1",false,function(v)
+Auto:Toggle("ทำโพ V.1",false,function(v)
     if Old_World then
         if _G.SelectToolWeapon == "" and v then
 
@@ -2141,7 +2191,7 @@ spawn(function()
         end
     end
 end)
-Auto:Toggle("Auto Pole V.1 HOP",false,function(v)
+Auto:Toggle("ทำโพ V.1 ย้ายเซิฟ",false,function(v)
     if Old_World then
         _G.AutoPoleHOP = v
     else
@@ -2253,8 +2303,8 @@ spawn(function()
         end
     end
 end)
-Auto:Seperator("Sea 2")
-Auto:Toggle("Auto Quest Bartilo",false,function(v)
+Auto:Seperator("โลก 2")
+Auto:Toggle("ทำเควสบาร์เลีย",false,function(v)
     if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BartiloQuestProgress","Bartilo") == 3 and v == true then
 
     else
@@ -2385,7 +2435,7 @@ spawn(function()
         end 
     end
 end)
-Auto:Toggle("Auto Quest Flower",false,function(Bool)
+Auto:Toggle("ทำเควสดอกไม้",false,function(Bool)
     if game.Players.LocalPlayer.Data.Level.Value < 850 and Bool then
         game:GetService("StarterGui"):SetCore("SendNotification", {
             Title = "Notification",
@@ -2499,7 +2549,7 @@ spawn(function()
         end
     end
 end)
-Auto:Toggle("Auto Rengoku",false,function(v)
+Auto:Toggle("ทำเรนโกคุ",false,function(v)
     if not New_World then
 
     elseif _G.SelectToolWeapon == "" and v then
@@ -2573,15 +2623,15 @@ spawn(function()
         end
     end
 end)
-Auto:Seperator("Sea 3")
-Auto:Toggle("Auto Enma/Yama",false,function(v)
+Auto:Seperator("โลก 3")
+Auto:Toggle("ทำยามะ",false,function(v)
     if not Three_World then
 
     else
         _G.AutoYama = v
     end 
 end)
-Auto:Toggle("Auto Enma/Yama HOP",false,function(v)
+Auto:Toggle("ทำยามะแบบย้ายเซิฟ",false,function(v)
     if not Three_World then
 
     else
@@ -2809,7 +2859,7 @@ spawn(function()
         end
     end
 end)
-Auto:Toggle("Auto Holy Torch",false,function(v)
+Auto:Toggle("ทำเสกบอสเคียวฮาโลวีน",false,function(v)
     if not Three_World then
 
     else
@@ -2877,14 +2927,14 @@ spawn(function()
         end
     end
 end)
-Auto:Toggle("Auto Elite Hunter",false,function(a)
+Auto:Toggle("ตีอีริด",false,function(a)
     if Three_World then
         _G.AutoEliteHunter = a
     else
 
     end
 end)
-Auto:Toggle("Auto Elite Hunter HOP",false,function(a)
+Auto:Toggle("ตีอีริดย้ายเซิฟ",false,function(a)
     if Three_World then
         _G.AutoEliteHunter = a
         _G.AutoEliteHunterHOP = a
@@ -3137,7 +3187,7 @@ spawn(function()
         end
     end	
 end) 
-Auto:Toggle("Auto Haki Rainbow",false,function(a)
+Auto:Toggle("ทำฮาคิเรนโบ",false,function(a)
     if Three_World then
         _G.AutoHakiRainbow = a
     else
@@ -3414,14 +3464,14 @@ spawn(function()
         end
     end
 end)
-Auto:Toggle("Auto Buddy Sword",false,function(v)
+Auto:Toggle("ทำดาบบิกมัม",false,function(v)
     if not Three_World then
 
     else
         _G.AutoBuddySwords = v
     end 
 end)
-Auto:Toggle("Auto Buddy Sword HOP",false,function(v)
+Auto:Toggle("ทำดาบบิกมัมย้ายเซิฟ",false,function(v)
     if not Three_World then
 
     else
@@ -3533,10 +3583,10 @@ end)
 local string_1 = "getInventoryWeapons";
 local Target = game:GetService("ReplicatedStorage").Remotes["CommF_"];
 local ListInventoryWeapons = Target:InvokeServer(string_1); 
-Auto:Toggle("Auto Hallow Scythe",false,function(a)
+Auto:Toggle("ทำเสกตีเคียวฮาโลวีน",false,function(a)
     HaveHallowScythe = false
     for i,v in pairs(ListInventoryWeapons) do
-        if v.Name == "Hallow Scythe" then   
+        if v.Name == "ทำเสกตีเคียวฮาโลวีน" then   
             HaveHallowScythe = true
         end
     end
@@ -3620,26 +3670,26 @@ end)
 
 -- Stats 
 
-Stats:Toggle("Melee",false,function(Value)
+Stats:Toggle("หมัด",false,function(Value)
 melee = Value    
 end)
-Stats:Toggle("Defense",false,function(value)
+Stats:Toggle("เลือด",false,function(value)
 defense = value
 end)
-Stats:Toggle("Sword",false,function(value)
+Stats:Toggle("ดาบ",false,function(value)
 sword = value
 end)
-Stats:Toggle("Gun",false,function(value)
+Stats:Toggle("ปืน",false,function(value)
 gun = value
 end)
-Stats:Toggle("Devil Fruit",false,function(value)
+Stats:Toggle("ผล",false,function(value)
 demonfruit = value
 end)
 
 Stats:Line()
 
 PointStats = 1
-Stats:Slider("Point",1,100,PointStats,nil,function(value)
+Stats:Slider("พอย์",1,100,PointStats,nil,function(value)
 PointStats = value
 end)
 
@@ -3692,13 +3742,13 @@ spawn(function()
 
 -- tp
 
-tp:Button("Teleport To Sea 1",function()
+tp:Button("โลก 1",function()
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelMain")
 end)
-tp:Button("Teleport To Sea 2",function()
+tp:Button("โลก 2",function()
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
 end)
-tp:Button("Teleport To Sea 3",function()
+tp:Button("โลก 3",function()
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
 end)
 
@@ -3870,11 +3920,11 @@ Dungeon:Line()
     
     Dungeon:Line()
     
-    Dungeon:Dropdown("Select Chips",{"Flame","Ice","Quake","Light","Dark","String","Rumble","Magma","Human: Buddha","Sand","Bird: Phoenix"},function(value)
+    Dungeon:Dropdown("เลือกดัน",{"Flame","Ice","Quake","Light","Dark","String","Rumble","Magma","Human: Buddha","Sand","Bird: Phoenix"},function(value)
         _G.SelectChip = value
     end)
     
-    Dungeon:Toggle("Auto Select Dungeon",_G.AutoSelectDungeon,function(value)
+    Dungeon:Toggle("กดยืนที่จะลงดันนี้",_G.AutoSelectDungeon,function(value)
         _G.AutoSelectDungeon = value
     end)
     
@@ -3912,7 +3962,7 @@ Dungeon:Line()
         end
     end)
     
-    Dungeon:Toggle("Auto Buy Chip",_G.AutoBuyChip,function(value)
+    Dungeon:Toggle("ออโต้ซื้อชิปดัน",_G.AutoBuyChip,function(value)
         _G.AutoBuyChip = value
     end)
     
@@ -3930,19 +3980,19 @@ Dungeon:Line()
         end)
     end)
     
-    Dungeon:Button("Buy Chip Select",function()
+    Dungeon:Button("ซื้อชิปดัน",function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("RaidsNpc","Select",_G.SelectChip)
     end)
     
-   Dungeon:Toggle("Kill Aura", false, function(vu)
+   Dungeon:Toggle("ฆ่ามอนในดัน", false, function(vu)
     Killaura = vu
 end)
 
-Dungeon:Toggle("Auto Awakenr", false, function(vu)
+Dungeon:Toggle("ออโต้อทำผลตื่น", false, function(vu)
     AutoAwakener = vu
 end)
 
-Dungeon:Toggle("Auto Next Island", false, function(vu)
+Dungeon:Toggle("ไปเกราะต่อไป&ไปที่ลงดัน", false, function(vu)
     NextIsland = vu
 end)
 
@@ -4013,19 +4063,19 @@ end)
     
 Dungeon:Line()
 
-Dungeon:Toggle("ESP Player",espplyer,function(a)
+Dungeon:Toggle("มองผู้เล่น",espplyer,function(a)
 		ESPPlayer = a
 		UpdatePlayerChams()
 	end)
-Dungeon:Toggle("ESP Chest",espchest,function(a)
+Dungeon:Toggle("มองกล่อง",espchest,function(a)
 		ChestESP = a
 		UpdateChestChams() 
 	end)
-Dungeon:Toggle("ESP Devil Fruit",espdevilfruit,function(a)
+Dungeon:Toggle("มองผล",espdevilfruit,function(a)
 		DevilFruitESP = a
 		UpdateDevilChams() 
 	end)
-Dungeon:Toggle("ESP Flower",espflower,function(a)
+Dungeon:Toggle("มองดอกไม้โลก2",espflower,function(a)
 		FlowerESP = a
 		UpdateFlowerChams() 
 	end)
@@ -4263,7 +4313,7 @@ FruitList = {
         _G.SelectFruitEat = value
     end)
     
-    DevilFruit:Toggle("Auto Eat Fruit",_G.AutoEatFruit,function(value)
+    DevilFruit:Toggle("ออโต้กินผล",_G.AutoEatFruit,function(value)
         _G.AutoEatFruit = value
     end)
     
@@ -4277,7 +4327,7 @@ FruitList = {
         end)
     end)
     
-    DevilFruit:Toggle("Auto Eat Fruit Hop",_G.AutoEatFruitHop,function(value)
+    DevilFruit:Toggle("ออโต้กินผลแบบย้ายเซิฟ",_G.AutoEatFruitHop,function(value)
         _G.AutoEatFruitHop = value
     end)
     
@@ -4306,7 +4356,7 @@ FruitList = {
         end)
     end)
     
-    DevilFruit:Toggle("Auto Random Fruit",_G.Random_Auto,function(value)
+    DevilFruit:Toggle("ออโต้สุ่มผล",_G.Random_Auto,function(value)
         _G.Random_Auto = value
     end)
     
@@ -4320,12 +4370,12 @@ FruitList = {
         end)
     end)
     
-    DevilFruit:Button("Random Fruit",function()
+    DevilFruit:Button("สุ่มผล",function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
     end)
     
     
-    DevilFruit:Toggle("Auto Drop Fruit",_G.DropFruit,function(value)
+    DevilFruit:Toggle("ทิ้งผล",_G.DropFruit,function(value)
         _G.DropFruit = value
     end)
         
@@ -4360,7 +4410,7 @@ FruitList = {
         end
     end)
     
-    DevilFruit:Toggle("Auto Store Fruit",_G.AutoStoreFruit,function(value)
+    DevilFruit:Toggle("ออโต้เก็บผล",_G.AutoStoreFruit,function(value)
         _G.AutoStoreFruit = value
     end)
     
@@ -4377,7 +4427,7 @@ FruitList = {
     end)
     
     
-    DevilFruit:Toggle("Grab Fruit",_G.BringFruit,function(value)
+    DevilFruit:Toggle("ดึงผล",_G.BringFruit,function(value)
         _G.BringFruit = value
         pcall(function()
             while _G.BringFruit do wait(.1)
@@ -4630,7 +4680,7 @@ Shop:Line()
 
 -- Misc
 
-Misc:Button("Rejoin",function()
+Misc:Button("รีเซิฟ",function()
 		local ts = game:GetService("TeleportService")
 		local p = game:GetService("Players").LocalPlayer
 		ts:Teleport(game.PlaceId, p)
@@ -4638,7 +4688,7 @@ Misc:Button("Rejoin",function()
 	local function HttpGet(url)
 		return game:GetService("HttpService"):JSONDecode(htgetf(url))
 	end
-Misc:Button("Server Hop",function()
+Misc:Button("ย้ายเซิฟ",function()
 		local PlaceID = game.PlaceId
 		local AllIDs = {}
 		local foundAnything = ""
@@ -4702,7 +4752,7 @@ Misc:Button("Server Hop",function()
 		Teleport()
 	end)
 Misc:Line()
-	Misc:Button("Auto Quest Player",function()
+	Misc:Button("ออโต้เควสผู้เล่น",function()
 local args = {
     [1] = "PlayerHunter"
 }
@@ -4711,7 +4761,7 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
 end) 
 
 Misc:Line()
-   Misc:Button("Join Pirates Team",function()
+   Misc:Button("จอยฝังโจร",function()
 		local args = {
 			[1] = "SetTeam",
 			[2] = "Pirates"
@@ -4726,7 +4776,7 @@ Misc:Line()
 		}
 		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
 	end)
-	Misc:Button("Join Marines Team",function()
+	Misc:Button("จอยฝังทหาร",function()
 		local args = {
 			[1] = "SetTeam",
 			[2] = "Marines"
@@ -4741,27 +4791,27 @@ Misc:Line()
 		}
 		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
 	end)
-	Misc:Button("Open Devil Shop",function()
+	Misc:Button("ดูผลในร้านค่า",function()
 		local args = {
 			[1] = "GetFruits"
 		}
 		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
 		game.Players.localPlayer.PlayerGui.Main.FruitShop.Visible = true
 	end)
-	Misc:Button("Open Inventory",function()
+	Misc:Button("ดูอาวุธในตัว",function()
 		local args = {
 			[1] = "getInventoryWeapons"
 		}
 		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
 		game.Players.localPlayer.PlayerGui.Main.Inventory.Visible = true
 	end)
-	Misc:Button("Open Fruit Inventory",function()
+	Misc:Button("ดูผลในตัว",function()
 		game.Players.localPlayer.PlayerGui.Main.FruitInventory.Visible = true
 	end)
-	Misc:Button("Open Color Haki",function()
+	Misc:Button("ดูสีฮาคิ",function()
 		game.Players.localPlayer.PlayerGui.Main.Colors.Visible = true
 	end)
-	Misc:Button("Open Title Name",function()
+	Misc:Button("ดูชายา",function()
 		local args = {
 			[1] = "getTitles"
 		}
@@ -4769,7 +4819,7 @@ Misc:Line()
 		game.Players.localPlayer.PlayerGui.Main.Titles.Visible = true
 	end)
 Misc:Line()
-	Misc:Toggle("Auto Click",autoclick,function(value)
+	Misc:Toggle("ไม่รู้",autoclick,function(value)
 		AuctoClick = value
 	end)
 	spawn(function()
@@ -4782,20 +4832,20 @@ Misc:Line()
             end
         end
     end)
-	Misc:Toggle("Dodge No Cooldown",false,function(Value)
+	Misc:Toggle("ไม่รู้",false,function(Value)
 		nododgecool = Value
 		NoDodgeCool()
 	end)
-	Misc:Toggle("Soru No Cooldown",false,function(Value)
+	Misc:Toggle("ก็บอกกลับบ้านไปงัย",false,function(Value)
 		Sorunocool = Value
 		NoSoruCool()
 	end)
-	Misc:Toggle("Infinits Geppo",false,function(Value)
+	Misc:Toggle("กระโดดไม่จำกัด",false,function(Value)
 		noGeppocool = Value
 		NoGeppoCool()
 	end)
 Misc:Line()
-    Misc:Button("Redeem All Code",function()
+    Misc:Button("ใช้โค้ดทั้งหมด",function()
 		function UseCode(Text)
 			game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer(Text)
 		end
@@ -4811,7 +4861,7 @@ Misc:Line()
 		UseCode("TantaiGaming")
 		UseCode("STRAWHATMAINE")
 	end)
-	Misc:Button("Remove Lave",function()
+	Misc:Button("ลบลาวาไม่ให้แล็ค",function()
 		for i,v in pairs(game.Workspace:GetDescendants()) do
 			if v.Name == "Lava" then   
 				v:Destroy()
@@ -4823,7 +4873,7 @@ Misc:Line()
 			end
 		end
 	end)
-	Misc:Button("FPS Boost",function()
+	Misc:Button("FPSบูส",function()
 		local decalsyeeted = true -- Leaving this on makes games look shitty but the fps goes up by at least 20.
 		local g = game
 		local w = g.Workspace
@@ -4924,7 +4974,7 @@ Misc:Line()
 
 -- Setting
 
-Setting:Toggle("Fast Attack",true,function(Fast)
+Setting:Toggle("ตีเร็ว",true,function(Fast)
     _G.FastAttack = Fast
 end)
 
@@ -4938,8 +4988,8 @@ spawn(function()
             pcall(function()
                 CameraShakerR:Stop()
                 CombatFramework.activeController.attacking = false
-                CombatFramework.activeController.timeToNextAttack = 1
-                CombatFramework.activeController.increment = 3
+                CombatFramework.activeController.timeToNextAttack = 0
+                CombatFramework.activeController.increment = 4
                 CombatFramework.activeController.hitboxMagnitude = 100
                 CombatFramework.activeController.blocking = false
                 CombatFramework.activeController.timeToNextBlock = 0
@@ -4951,11 +5001,11 @@ spawn(function()
     end
 end)
 
-Setting:Toggle("Bring Mob",true,function(Mag)
+Setting:Toggle("ร่วมมอน",true,function(Mag)
     Magnet = Mag
 end)
 
-Setting:Toggle("Lock Mob",false,function(d)
+Setting:Toggle("ล็อกมอน",false,function(d)
     _G.LockMob = d
         if _G.LockMob == true then
             while _G.LockMob do wait()
@@ -4971,7 +5021,7 @@ end)
 
 Setting:Line()
 
-Setting:Toggle("Auto Haki",true,function(d)
+Setting:Toggle("เปิดฮาคิออโต้",true,function(d)
 _G.AUTOHAKI = d
 end)
 spawn(function()
@@ -4989,7 +5039,7 @@ end)
 
 Setting:Line()
 
-LockLevelValue = 2300
+LockLevelValue = 2450
 OldLevel = game.Players.localPlayer.Data.Level.Value
 Setting:Slider("Select Level Lock",1,LockLevelValue,LockLevelValue,nil,function(value)
 	LockLevelValue = value
@@ -5009,14 +5059,14 @@ end)
 
 -- Cr
 
-Cr:Label("Credit : 1XLII HUB")
+Cr:Label("KOBEN")
 Cr:Line()
-Cr:Label("DEX : YOUï¿½ï¿½#1641")
+Cr:Label("KOBENทำฟังชั่น")
 Cr:Line()
-Cr:Label("DEX : O4X.#2721")
+Cr:Label("KOBENทำUIกับแปลไทย")
 Cr:Line()
-Cr:Button("Copy Link Discord",function()
-    setclipboard("https://discord.gg/QNKtbnZPq5")
+Cr:Button("กอป ลิงค์ ยูทูป",function()
+    setclipboard("https://youtube.com/@KOBENV2")
 end)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
